@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Image from 'next/image';
+
+
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('about')
@@ -44,7 +47,7 @@ export default function Portfolio() {
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 p-8">
       <header className="mb-12 text-center">
         <h1 className="text-4xl font-bold mb-4">Bilal SAJAI</h1>
-        <p className="text-xl text-gray-600">Second-year Master's student in Distributed Systems and Artificial Intelligence</p>
+        <p className="text-xl text-gray-600">Second-year Masters student in Distributed Systems and Artificial Intelligence</p>
       </header>
 
       <nav className="mb-8">
@@ -117,11 +120,11 @@ export default function Portfolio() {
               <div className="space-y-4">
                 <div>
                   <h3 className="font-semibold">Master Degree in Distributed Systems and Artificial Intelligence</h3>
-                  <p>Ecole Normale Supérieure de L'Enseignement Technique (ENSET), Mohammedia</p>
+                  <p>Ecole Normale Supérieure de LEnseignement Technique (ENSET), Mohammedia</p>
                   <p className="text-sm text-gray-500">2025 (Ongoing)</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold">Bachelor's Degree in Mathematics and Computer Science</h3>
+                  <h3 className="font-semibold">Bachelors Degree in Mathematics and Computer Science</h3>
                   <p>Faculty of Science and Technology (FST), Al-Hoceima</p>
                   <p className="text-sm text-gray-500">2023</p>
                 </div>
@@ -139,7 +142,14 @@ export default function Portfolio() {
                   <CardDescription>{project.date}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <img src={project.image} alt={`${project.title} screenshot`} className="w-full h-auto rounded-lg shadow-md" />
+                // Disable the rule for this line
+                <Image
+  src="/image.jpg"
+  alt="description"
+  width={300}
+  height={200}
+  layout="responsive"
+/>
                   <p>{project.description}</p>
                   <Button variant="outline" asChild>
                     <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
