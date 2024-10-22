@@ -7,9 +7,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import Image from 'next/image';
-
-
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('about')
@@ -31,14 +28,12 @@ export default function Portfolio() {
       title: 'Heart Disease Prediction',
       description: 'Developed a web application using Flask to predict the probability of heart disease based on patient data, achieving 89% accuracy. Utilized various classification algorithms and technologies such as Python, Flask, Pickle, HTML, and CSS.',
       date: '05/2024',
-      image: '/placeholder.svg?height=200&width=300',
       github: 'https://github.com/yourusername/heart-disease-prediction'
     },
     {
       title: 'Bank Account Management Web Application',
       description: 'Developed a web application providing various banking services using Spring Boot, Hibernate, Angular, and an SQL database, ensuring robust security through Spring Security and JSON Web Token integration.',
       date: '06/2023',
-      image: '/placeholder.svg?height=200&width=300',
       github: 'https://github.com/yourusername/bank-account-management'
     },
   ]
@@ -142,14 +137,6 @@ export default function Portfolio() {
                   <CardDescription>{project.date}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                // Disable the rule for this line
-                <Image
-  src="/image.jpg"
-  alt="description"
-  width={300}
-  height={200}
-  layout="responsive"
-/>
                   <p>{project.description}</p>
                   <Button variant="outline" asChild>
                     <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
