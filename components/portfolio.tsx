@@ -15,12 +15,12 @@ export default function Portfolio() {
 
   const skills = [
     { name: 'Java', level: 70 },
-    { name: 'Python', level: 70 },
+    { name: 'Python', level: 60 },
     { name: 'Machine Learning', level: 75 },
-    { name: 'Deep Learning', level: 70 },
-    { name: 'Spring Boot', level: 65 },
-    { name: 'Angular', level: 65 },
-    { name: 'SQL', level: 70 },
+    { name: 'Deep Learning', level: 60 },
+    { name: 'Spring Boot', level: 75 },
+    { name: 'Angular', level: 45 },
+    { name: 'SQL', level: 50 },
   ]
 
   const projects = [
@@ -28,13 +28,13 @@ export default function Portfolio() {
       title: 'Heart Disease Prediction',
       description: 'Developed a web application using Flask to predict the probability of heart disease based on patient data, achieving 89% accuracy. Utilized various classification algorithms and technologies such as Python, Flask, Pickle, HTML, and CSS.',
       date: '05/2024',
-      github: 'https://github.com/yourusername/heart-disease-prediction'
+      github: 'https://github.com/Bilalsajai1/heart-disease-prediction'
     },
     {
       title: 'Bank Account Management Web Application',
       description: 'Developed a web application providing various banking services using Spring Boot, Hibernate, Angular, and an SQL database, ensuring robust security through Spring Security and JSON Web Token integration.',
       date: '06/2023',
-      github: 'https://github.com/yourusername/bank-account-management'
+      github: 'https://github.com/Bilalsajai1/digital_banking'
     },
   ]
 
@@ -74,8 +74,8 @@ export default function Portfolio() {
             </CardHeader>
             <CardContent className="flex flex-col md:flex-row items-center md:items-start gap-6">
               <Avatar className="w-48 h-48">
-                <AvatarImage src="/placeholder.svg?height=200&width=200" alt="Bilal SAJAI" />
-                <AvatarFallback>BS</AvatarFallback>
+              <AvatarImage src="/image1.png" alt="Bilal SAJAI" />
+              <AvatarFallback>BS</AvatarFallback>
               </Avatar>
               <div>
                 <p className="text-gray-700">
@@ -199,12 +199,12 @@ export default function Portfolio() {
                   </a>
                 </Button>
                 <Button variant="outline" size="icon" asChild>
-                  <a href="https://linkedin.com/in/bilalsajai" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <a href="https://www.linkedin.com/in/bilal-sajai-639324293/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                     <Linkedin className="h-4 w-4 text-blue-700" />
                   </a>
                 </Button>
                 <Button variant="outline" size="icon" asChild>
-                  <a href="https://github.com/bilalsajai" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                  <a href="https://github.com/Bilalsajai1" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                     <Github className="h-4 w-4 text-blue-700" />
                   </a>
                 </Button>
