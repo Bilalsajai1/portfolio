@@ -10,7 +10,7 @@ export function Projects() {
     {
       title: "Reconnaissance de Texte Manuscrit par Deep Learning",
       institution: "ENSET Mohammedia",
-      date: "Octobre 2023",
+      date: "Novembre 2024",
       icon: Brain,
       image: "/images/handwriting.jpeg",
       description:
@@ -79,11 +79,19 @@ export function Projects() {
   ]
 
   return (
-    <section id="projects" className="py-20 px-4">
-      <div className="container mx-auto max-w-6xl">
+    <section id="projects" className="py-20 px-4 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-r from-blue-400/10 to-purple-600/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-600/10 rounded-full blur-3xl animate-float-delayed"></div>
+      </div>
+
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Projets Techniques</h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up">
+            <span className="text-gradient-animated">Projets Techniques</span>
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-400 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             Une sélection de mes projets les plus significatifs en IA et développement
           </p>
         </div>
@@ -92,70 +100,87 @@ export function Projects() {
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="group hover:shadow-xl transition-all duration-300 border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden"
+              className="group card-hover hover-lift glass-effect border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden stagger-item perspective-1000"
+              style={{ animationDelay: `${index * 0.2}s` }}
             >
-              {/* Project Image */}
+              {/* Project Image with enhanced effects */}
               <div className="relative h-48 overflow-hidden">
                 <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div
-                  className={`absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r ${project.color} flex items-center justify-center`}
+                  className={`absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r ${project.color} flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 animate-pulse-glow`}
                 >
-                  <project.icon className="w-6 h-6 text-white" />
+                  <project.icon className="w-6 h-6 text-white group-hover:animate-bounce" />
                 </div>
+
+                {/* Floating particles effect */}
+                <div className="absolute top-2 left-2 w-2 h-2 bg-white/60 rounded-full animate-float"></div>
+                <div className="absolute top-8 left-8 w-1 h-1 bg-blue-400/80 rounded-full animate-float-delayed"></div>
+                <div className="absolute bottom-4 right-8 w-1.5 h-1.5 bg-purple-400/80 rounded-full animate-bounce-slow"></div>
               </div>
 
-              <CardHeader>
-                <CardTitle className="text-xl mb-2">{project.title}</CardTitle>
+              <CardHeader className="relative">
+                <CardTitle className="text-xl mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                  {project.title}
+                </CardTitle>
                 <div className="text-sm text-gray-500 space-y-1">
-                  <div>{project.institution}</div>
-                  <div>{project.date}</div>
+                  <div className="group-hover:text-blue-500 transition-colors">{project.institution}</div>
+                  <div className="group-hover:text-purple-500 transition-colors">{project.date}</div>
                 </div>
               </CardHeader>
 
               <CardContent className="space-y-4">
-                <p className="text-gray-600 dark:text-gray-400">{project.description}</p>
+                <p className="text-gray-600 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300">
+                  {project.description}
+                </p>
 
                 <div>
-                  <h4 className="font-semibold mb-2">Fonctionnalités clés :</h4>
+                  <h4 className="font-semibold mb-2 text-gradient-animated">Fonctionnalités clés :</h4>
                   <ul className="space-y-1">
                     {project.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm">
-                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-gray-600 dark:text-gray-400">{feature}</span>
+                      <li key={idx} className="flex items-start gap-2 text-sm group/item">
+                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
+                        <span className="text-gray-600 dark:text-gray-400 group-hover/item:text-gray-700 dark:group-hover/item:text-gray-300 transition-colors">
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold mb-2">Technologies :</h4>
+                  <h4 className="font-semibold mb-2 text-gradient-animated">Technologies :</h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs flex items-center gap-1">
-                        <span>{tech.logo}</span>
-                        {tech.name}
+                      <Badge
+                        key={idx}
+                        variant="outline"
+                        className="text-xs flex items-center gap-1 hover-glow cursor-pointer group/tech glass-effect"
+                      >
+                        <span className="group-hover/tech:animate-bounce">{tech.logo}</span>
+                        <span className="group-hover/tech:text-blue-600 transition-colors">{tech.name}</span>
                       </Badge>
                     ))}
                   </div>
                 </div>
 
                 <div className="flex gap-2 pt-4">
-                  <Button variant="outline" size="sm" className="flex-1" asChild>
+                  <Button variant="outline" size="sm" className="flex-1 btn-animated hover-lift group/btn" asChild>
                     <Link href="https://github.com/Bilalsajai1" target="_blank" rel="noopener noreferrer">
-                      <Github className="w-4 h-4 mr-2" />
+                      <Github className="w-4 h-4 mr-2 group-hover/btn:animate-spin" />
                       Code
                     </Link>
                   </Button>
                   {project.articleLink && (
-                    <Button variant="outline" size="sm" className="flex-1" asChild>
+                    <Button variant="outline" size="sm" className="flex-1 btn-animated hover-lift group/btn" asChild>
                       <Link href={project.articleLink} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="w-4 h-4 mr-2" />
+                        <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:animate-pulse" />
                         Article
                       </Link>
                     </Button>

@@ -54,7 +54,7 @@ export function Experience() {
               <div className="flex-1">
                 <div className="flex items-center gap-4 mb-4">
                   <CardTitle className="text-2xl text-blue-600">{experience.position}</CardTitle>
-                  <div className="relative w-32 h-32 flex-shrink-0">
+                  <div className="relative w-40 h-40 flex-shrink-0">
                     <Image
                       src="/images/perenity-logo.png"
                       alt="PERENITY Software"
