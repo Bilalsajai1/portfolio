@@ -14,6 +14,14 @@ export function ThemeToggle() {
     setMounted(true)
   }, [])
 
+  useEffect(() => {
+    // Force theme application on mount
+    const savedTheme = localStorage.getItem("theme")
+    if (savedTheme) {
+      setTheme(savedTheme)
+    }
+  }, [setTheme])
+
   if (!mounted) {
     return null
   }

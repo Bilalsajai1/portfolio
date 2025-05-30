@@ -10,26 +10,26 @@ export function Projects() {
     {
       title: "Reconnaissance de Texte Manuscrit par Deep Learning",
       institution: "ENSET Mohammedia",
-      date: "Octobre 2024",
+      date: "Octobre 2023",
       icon: Brain,
       image: "/images/handwriting.jpeg",
       description:
-        "Développement innovant d'un système de reconnaissance de texte manuscrit anglais combinant des approches custom et de fine-tuning de modèles pré-entraînés, avec une attention particulière sur l'optimisation de TrOCR.",
+        "Innovation dans la reconnaissance de texte manuscrit anglais utilisant deux approches complémentaires : un modèle CNN-GRU avec mécanisme d'auto-attention développé from scratch et le fine-tuning du modèle TrOCR basé sur les transformers. Comparaison approfondie des performances en termes de CER et WER.",
       features: [
-        "Approche hybride : Modèle CNN-GRU custom avec mécanisme d'auto-attention",
-        "Innovation TrOCR : Fine-tuning du modèle Transformer pré-entraîné pour texte manuscrit anglais",
-        "Performance exceptionnelle : CER de 6.19% et WER de 21.19% avec le modèle custom",
-        "Évaluation comparative : CNN-LSTM, ViT-LSTM, CNN-GRU et TrOCR fine-tuné",
-        "Article de recherche publié détaillant les méthodologies et résultats",
+        "Fine-tuning du modèle TrOCR pour texte manuscrit anglais avec encodeur ViT et décodeur autorégressif",
+        "Architecture CNN-GRU avec mécanisme d'auto-attention pour focus dynamique sur les séquences",
+        "Évaluation comparative : TrOCR (0.54% validation loss) vs CNN-GRU-Attention (2.99% validation loss)",
+        "Analyse des compromis entre précision et efficacité computationnelle pour applications HTR",
       ],
       technologies: [
         { name: "Python", logo: "🐍" },
-        { name: "TensorFlow", logo: "🔥" },
+        { name: "TrOCR", logo: "🤖" },
         { name: "PyTorch", logo: "⚡" },
-        { name: "OpenCV", logo: "👁️" },
-        { name: "NumPy", logo: "🔢" },
+        { name: "CNN-GRU", logo: "🧠" },
+        { name: "Transformers", logo: "🔄" },
       ],
       color: "from-purple-500 to-pink-500",
+      articleLink: "https://medium.com/@bilal.sajai-etu/enhancement-of-handwritten-text-recognition-b45b27ef3c4d",
     },
     {
       title: "Système de Prédiction des Maladies Cardiaques",
@@ -152,13 +152,9 @@ export function Projects() {
                       Code
                     </Link>
                   </Button>
-                  {index === 0 && (
+                  {project.articleLink && (
                     <Button variant="outline" size="sm" className="flex-1" asChild>
-                      <Link
-                        href="https://medium.com/@bilal.sajai-etu/enhancement-of-handwritten-text-recognition-b45b27ef3c4d"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <Link href={project.articleLink} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="w-4 h-4 mr-2" />
                         Article
                       </Link>

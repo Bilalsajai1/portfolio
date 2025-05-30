@@ -54,8 +54,14 @@ export function Experience() {
               <div className="flex-1">
                 <div className="flex items-center gap-4 mb-4">
                   <CardTitle className="text-2xl text-blue-600">{experience.position}</CardTitle>
-                  <div className="relative w-16 h-16 flex-shrink-0">
-                    <Image src="/images/perenity-logo.png" alt="PERENITY Software" fill className="object-contain" />
+                  <div className="relative w-32 h-32 flex-shrink-0">
+                    <Image
+                      src="/images/perenity-logo.png"
+                      alt="PERENITY Software"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
                   </div>
                 </div>
                 <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400 mb-2">

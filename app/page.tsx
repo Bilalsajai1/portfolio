@@ -10,7 +10,6 @@ import { Navbar } from "@/components/navbar"
 import { AnimatedBackground } from "@/components/animated-background"
 import { FloatingElements } from "@/components/floating-elements"
 import { ScrollProgress } from "@/components/scroll-progress"
-import { MessagesViewer } from "@/components/messages-viewer"
 
 export default function Home() {
   return (
@@ -27,7 +26,6 @@ export default function Home() {
       <Skills />
       <Education />
       <Contact />
-      <MessagesViewer />
     </main>
   )
 }
