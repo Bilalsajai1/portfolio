@@ -50,30 +50,34 @@ export function Experience() {
 
         <Card className="max-w-4xl mx-auto">
           <CardHeader>
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+            <div className="flex flex-col gap-6">
+              {/* Company Logo - Always at the top for better mobile display */}
+              <div className="relative w-40 h-40 mx-auto md:mx-0">
+                <Image
+                  src="/images/perenity-logo.png"
+                  alt="PERENITY Software"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
               <div className="flex-1">
-                <div className="flex items-center gap-4 mb-4">
-                  <CardTitle className="text-2xl text-blue-600">{experience.position}</CardTitle>
-                  <div className="relative w-40 h-40 flex-shrink-0">
-                    <Image
-                      src="/images/perenity-logo.png"
-                      alt="PERENITY Software"
-                      fill
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400 mb-2">
+                <CardTitle className="text-2xl text-blue-600 text-center md:text-left mb-4">
+                  {experience.position}
+                </CardTitle>
+
+                <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400 mb-2 justify-center md:justify-start">
                   <Building className="w-4 h-4" />
                   <span className="font-semibold">{experience.company}</span>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4 text-sm text-gray-500">
-                  <div className="flex items-center gap-1">
+
+                <div className="flex flex-col sm:flex-row gap-4 text-sm text-gray-500 justify-center md:justify-start">
+                  <div className="flex items-center gap-1 justify-center md:justify-start">
                     <Calendar className="w-4 h-4" />
                     {experience.period}
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 justify-center md:justify-start">
                     <MapPin className="w-4 h-4" />
                     {experience.location}
                   </div>

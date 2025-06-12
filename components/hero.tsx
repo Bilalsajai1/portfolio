@@ -9,7 +9,6 @@ import { TypingAnimation } from "./typing-animation"
 import { useEffect, useState } from "react"
 
 export function Hero() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
 
   const typingTexts = [
@@ -25,12 +24,7 @@ export function Hero() {
   useEffect(() => {
     setIsVisible(true)
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+    return () => {}
   }, [])
 
   return (
@@ -41,16 +35,6 @@ export function Hero() {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-pink-600/20 rounded-full blur-3xl animate-float-delayed"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-400/10 to-blue-600/10 rounded-full blur-3xl animate-spin-slower"></div>
       </div>
-
-      {/* Magnetic cursor effect */}
-      <div
-        className="fixed w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full pointer-events-none z-50 mix-blend-difference transition-transform duration-100 ease-out"
-        style={{
-          left: mousePosition.x - 12,
-          top: mousePosition.y - 12,
-          transform: `scale(${mousePosition.x > 0 ? 1 : 0})`,
-        }}
-      />
 
       <div className="container mx-auto max-w-6xl relative z-20">
         <div className="text-center space-y-8">
