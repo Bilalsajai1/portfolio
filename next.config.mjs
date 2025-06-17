@@ -7,7 +7,11 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
+    domains: ['localhost'],
     unoptimized: true,
+  },
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
   },
 }
 
