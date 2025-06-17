@@ -51,21 +51,22 @@ export function Experience() {
         <Card className="max-w-4xl mx-auto">
           <CardHeader>
             <div className="flex flex-col gap-6">
-              {/* Company Logo - Always at the top for better mobile display */}
-              <div className="relative w-40 h-40 mx-auto md:mx-0">
-                <Image
-                  src="/images/perenity-logo.png"
-                  alt="PERENITY Software"
-                  fill
-                  className="object-contain"
-                  priority
-                />
+              {/* Company Logo - Always at the top for mobile */}
+              <div className="flex justify-center md:justify-start">
+                <div className="relative w-40 h-40">
+                  <Image
+                    src="/images/perenity-logo.png"
+                    alt="PERENITY Software"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
               </div>
 
-              <div className="flex-1">
-                <CardTitle className="text-2xl text-blue-600 text-center md:text-left mb-4">
-                  {experience.position}
-                </CardTitle>
+              {/* Experience Details */}
+              <div className="text-center md:text-left">
+                <CardTitle className="text-xl md:text-2xl text-blue-600 mb-4">{experience.position}</CardTitle>
 
                 <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400 mb-2 justify-center md:justify-start">
                   <Building className="w-4 h-4" />
