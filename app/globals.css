@@ -69,56 +69,10 @@
 }
 
 @layer utilities {
-  .animate-gradient-x {
-    animation: gradient-x 4s ease infinite;
-    background-size: 400% 400%;
-  }
-
-  .animate-gradient-xy {
-    animation: gradient-xy 6s ease infinite;
-    background-size: 400% 400%;
-  }
-
-  .animate-spin-slow {
-    animation: spin 8s linear infinite;
-  }
-
-  .animate-spin-slower {
-    animation: spin 12s linear infinite;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-float-delayed {
-    animation: float 6s ease-in-out infinite 2s;
-  }
-
-  .animate-bounce-slow {
-    animation: bounce-slow 3s ease-in-out infinite;
-  }
-
-  .animate-fade-in-up {
-    animation: fade-in-up 0.8s ease-out forwards;
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  .animate-scale-in {
-    animation: scale-in 0.6s ease-out forwards;
-    opacity: 0;
-    transform: scale(0.8);
-  }
-
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-
-  .animate-text-shimmer {
-    animation: text-shimmer 3s ease-in-out infinite;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
-    background-size: 200% 100%;
+  .text-gradient-animated {
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
+    background-size: 300% 300%;
+    animation: gradient-x 3s ease infinite;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -134,14 +88,6 @@
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .bg-300\% {
-    background-size: 300%;
-  }
-
-  .bg-400\% {
-    background-size: 400%;
   }
 
   .perspective-1000 {
@@ -176,15 +122,6 @@
 
   .magnetic {
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .text-gradient-animated {
-    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
-    background-size: 300% 300%;
-    animation: gradient-x 3s ease infinite;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   .card-hover {
@@ -266,4 +203,101 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #2563eb, #7c3aed);
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes gradient-xy {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  66% {
+    transform: translateY(-10px) rotate(-5deg);
+  }
+}
+
+@keyframes bounce-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes stagger-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
