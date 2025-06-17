@@ -28,14 +28,12 @@ export function Hero() {
   }, [])
 
   const handleDownloadCV = () => {
-    // Create a link element and trigger download
-    const link = document.createElement("a")
-    link.href = "/cv/Bilal_SAJAI_CV.pdf"
-    link.download = "Bilal_SAJAI_CV.pdf"
-    link.target = "_blank"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    // Convert Google Drive sharing link to direct download link
+    const fileId = "1FxRNMhXpNTU72eLiouGc-w0eb8wtfdtd"
+    const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`
+
+    // Open the download link in a new tab
+    window.open(downloadUrl, "_blank")
   }
 
   return (
