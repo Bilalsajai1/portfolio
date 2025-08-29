@@ -4,7 +4,17 @@ import { useEffect, useState } from "react"
 import { Brain, Code, Database, Cpu, Zap, Sparkles } from "lucide-react"
 
 export function FloatingElements() {
-  const [elements, setElements] = useState<Array<{ id: number; icon: any; x: number; y: number; delay: number }>>([])
+  const [elements, setElements] = useState<
+    Array<{
+      id: number
+      icon: any
+      x: number
+      y: number
+      delay: number
+      duration: number
+      size: number
+    }>
+  >([])
 
   const icons = [Brain, Code, Database, Cpu, Zap, Sparkles]
 
@@ -12,9 +22,11 @@ export function FloatingElements() {
     const newElements = Array.from({ length: 6 }, (_, i) => ({
       id: i,
       icon: icons[i],
-      x: Math.random() * 100,
-      y: Math.random() * 100,
+      x: Math.random() * 90 + 5, // Keep elements away from edges
+      y: Math.random() * 90 + 5,
       delay: i * 0.5,
+      duration: 6 + Math.random() * 4, // Random duration between 6-10s
+      size: 6 + Math.random() * 4, // Random size between 6-10
     }))
     setElements(newElements)
   }, [])
@@ -26,15 +38,18 @@ export function FloatingElements() {
         return (
           <div
             key={element.id}
-            className="absolute animate-float opacity-10 dark:opacity-20"
+            className="absolute opacity-10 dark:opacity-20 animate-float"
             style={{
               left: `${element.x}%`,
               top: `${element.y}%`,
               animationDelay: `${element.delay}s`,
-              animationDuration: `${6 + Math.random() * 4}s`,
+              animationDuration: `${element.duration}s`,
             }}
           >
-            <Icon className="w-8 h-8 text-blue-500" />
+            <Icon
+              className="text-blue-500 hover:text-purple-500 transition-colors duration-500"
+              style={{ width: `${element.size * 4}px`, height: `${element.size * 4}px` }}
+            />
           </div>
         )
       })}

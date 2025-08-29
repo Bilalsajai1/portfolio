@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Bilal SAJAI - Ingénieur IA & Systèmes Distribués",
   description: "Portfolio de Bilal SAJAI, Ingénieur en Intelligence Artificielle et Systèmes Distribués",
-    generator: 'v0.dev'
+    generator: 'v0.app'
 }
 
 export default function RootLayout({

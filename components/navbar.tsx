@@ -67,11 +67,11 @@ export function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="#home" className="flex items-center gap-3 group">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden group-hover:scale-110 transition-transform duration-300">
-                <Image src="/images/logo.jpeg" alt="Bilal SAJAI Logo" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-600/10 group-hover:opacity-100 opacity-0 transition-opacity" />
+              <div className="relative w-10 h-10 rounded-full overflow-hidden group-hover:scale-110 transition-transform duration-300 animate-breathe micro-hover">
+                <Image src="/images/logo.jpeg" alt="Bilal SAJAI Logo" fill className="object-cover hover-saturate" />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-600/10 group-hover:opacity-100 opacity-0 transition-opacity animate-glow-pulse" />
               </div>
-              <span className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-text-reveal hover-brighten">
                 Bilal SAJAI
               </span>
             </Link>
@@ -82,16 +82,19 @@ export function Navbar() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.href)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 relative overflow-hidden group micro-hover micro-press focus-ring ${
                     activeSection === item.id
                       ? "text-white"
                       : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
                   }`}
                 >
                   {activeSection === item.id && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-glow-pulse" />
                   )}
-                  <span className="relative z-10">{item.label}</span>
+                  <span className="relative z-10 hover-brighten">{item.label}</span>
+                  {activeSection !== item.id && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-600/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  )}
                 </button>
               ))}
             </div>
