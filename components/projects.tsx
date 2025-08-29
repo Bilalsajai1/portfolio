@@ -100,29 +100,29 @@ export function Projects() {
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="group card-hover hover-lift glass-effect border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden stagger-item perspective-1000 micro-hover animate-morph-border"
+              className="group card-hover hover-lift glass-effect border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden stagger-item perspective-1000"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               {/* Project Image with enhanced effects */}
-              <div className="relative h-48 overflow-hidden animate-breathe">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500 hover-saturate"
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div
-                  className={`absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r ${project.color} flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 animate-glow-pulse micro-hover`}
+                  className={`absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r ${project.color} flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 animate-pulse-glow`}
                 >
-                  <project.icon className="w-6 h-6 text-white group-hover:animate-bounce animate-heartbeat" />
+                  <project.icon className="w-6 h-6 text-white group-hover:animate-bounce" />
                 </div>
 
-                {/* Enhanced floating particles effect */}
-                <div className="absolute top-2 left-2 w-2 h-2 bg-white/60 rounded-full animate-particle-float"></div>
+                {/* Floating particles effect */}
+                <div className="absolute top-2 left-2 w-2 h-2 bg-white/60 rounded-full animate-float"></div>
                 <div className="absolute top-8 left-8 w-1 h-1 bg-blue-400/80 rounded-full animate-float-delayed"></div>
-                <div className="absolute bottom-4 right-8 w-1.5 h-1.5 bg-purple-400/80 rounded-full animate-subtle-bounce"></div>
+                <div className="absolute bottom-4 right-8 w-1.5 h-1.5 bg-purple-400/80 rounded-full animate-bounce-slow"></div>
               </div>
 
               <CardHeader className="relative">
@@ -146,7 +146,7 @@ export function Projects() {
                     {project.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-sm group/item">
                         <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0 group-hover/item:animate-pulse"></div>
-                        <span className="text-gray-600 dark:text-gray-400 group-hover/item:text-gray-700 dark:group-hover/item:text-gray-300 transition-colors duration-300">
+                        <span className="text-gray-600 dark:text-gray-400 group-hover/item:text-gray-700 dark:group-hover/item:text-gray-300 transition-colors">
                           {feature}
                         </span>
                       </li>
@@ -161,37 +161,24 @@ export function Projects() {
                       <Badge
                         key={idx}
                         variant="outline"
-                        className="text-xs flex items-center gap-1 hover-glow cursor-pointer group/tech glass-effect micro-hover micro-press animate-text-reveal ripple"
-                        style={{ animationDelay: `${idx * 0.1}s` }}
+                        className="text-xs flex items-center gap-1 hover-glow cursor-pointer group/tech glass-effect"
                       >
-                        <span className="group-hover/tech:animate-bounce animate-subtle-bounce">{tech.logo}</span>
-                        <span className="group-hover/tech:text-blue-600 transition-colors hover-brighten">
-                          {tech.name}
-                        </span>
+                        <span className="group-hover/tech:animate-bounce">{tech.logo}</span>
+                        <span className="group-hover/tech:text-blue-600 transition-colors">{tech.name}</span>
                       </Badge>
                     ))}
                   </div>
                 </div>
 
                 <div className="flex gap-2 pt-4">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 btn-animated hover-lift group/btn bg-transparent"
-                    asChild
-                  >
+                  <Button variant="outline" size="sm" className="flex-1 btn-animated hover-lift group/btn" asChild>
                     <Link href="https://github.com/Bilalsajai1" target="_blank" rel="noopener noreferrer">
                       <Github className="w-4 h-4 mr-2 group-hover/btn:animate-spin" />
                       Code
                     </Link>
                   </Button>
                   {project.articleLink && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 btn-animated hover-lift group/btn bg-transparent"
-                      asChild
-                    >
+                    <Button variant="outline" size="sm" className="flex-1 btn-animated hover-lift group/btn" asChild>
                       <Link href={project.articleLink} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:animate-pulse" />
                         Article

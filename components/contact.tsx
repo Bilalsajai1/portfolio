@@ -169,20 +169,20 @@ export function Contact() {
             <div className="space-y-4">
               {contactInfo.map((item, index) => (
                 <Link key={index} href={item.href} target="_blank" rel="noopener noreferrer" className="block">
-                  <Card className="group hover:shadow-xl transition-all duration-500 cursor-pointer border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden micro-hover animate-morph-border">
+                  <Card className="group hover:shadow-xl transition-all duration-500 cursor-pointer border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm overflow-hidden">
                     <div
                       className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
                     />
                     <CardContent className="p-6 relative z-10">
                       <div className="flex items-center gap-4">
                         <div
-                          className={`w-14 h-14 rounded-full bg-gradient-to-r ${item.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg animate-glow-pulse micro-hover`}
+                          className={`w-14 h-14 rounded-full bg-gradient-to-r ${item.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}
                         >
-                          <item.icon className="w-7 h-7 text-white animate-heartbeat" />
+                          <item.icon className="w-7 h-7 text-white" />
                         </div>
                         <div>
-                          <div className="font-semibold text-lg hover-brighten animate-text-reveal">{item.label}</div>
-                          <div className="text-gray-600 dark:text-gray-400 animate-slide-in-right">{item.value}</div>
+                          <div className="font-semibold text-lg">{item.label}</div>
+                          <div className="text-gray-600 dark:text-gray-400">{item.value}</div>
                         </div>
                       </div>
                     </CardContent>
@@ -270,7 +270,7 @@ export function Contact() {
                       placeholder="Votre nom complet"
                       required
                       disabled={isSubmitting}
-                      className="transition-all duration-300 focus:ring-2 focus:ring-violet-500 border-gray-200 dark:border-gray-700 micro-hover focus-ring animate-slide-in-left"
+                      className="transition-all duration-300 focus:ring-2 focus:ring-violet-500 border-gray-200 dark:border-gray-700"
                     />
                   </div>
                   <div>
@@ -285,7 +285,7 @@ export function Contact() {
                       placeholder="votre@email.com"
                       required
                       disabled={isSubmitting}
-                      className="transition-all duration-300 focus:ring-2 focus:ring-violet-500 border-gray-200 dark:border-gray-700 micro-hover focus-ring animate-slide-in-left"
+                      className="transition-all duration-300 focus:ring-2 focus:ring-violet-500 border-gray-200 dark:border-gray-700"
                     />
                   </div>
                 </div>
@@ -301,7 +301,7 @@ export function Contact() {
                     placeholder="Sujet de votre message"
                     required
                     disabled={isSubmitting}
-                    className="transition-all duration-300 focus:ring-2 focus:ring-violet-500 border-gray-200 dark:border-gray-700 micro-hover focus-ring animate-slide-in-left"
+                    className="transition-all duration-300 focus:ring-2 focus:ring-violet-500 border-gray-200 dark:border-gray-700"
                   />
                 </div>
 
@@ -317,28 +317,43 @@ export function Contact() {
                     rows={6}
                     required
                     disabled={isSubmitting}
-                    className="transition-all duration-300 focus:ring-2 focus:ring-violet-500 resize-none border-gray-200 dark:border-gray-700 micro-hover focus-ring animate-slide-in-left"
+                    className="transition-all duration-300 focus:ring-2 focus:ring-violet-500 resize-none border-gray-200 dark:border-gray-700"
                   />
                   <div className="text-xs text-gray-500 mt-1">{formData.message.length}/1000 caractères</div>
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-600 hover:from-violet-700 hover:via-fuchsia-700 hover:to-pink-700 transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl border-0 micro-press ripple animate-glow-pulse"
+                  className="w-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-600 hover:from-violet-700 hover:via-fuchsia-700 hover:to-pink-700 transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl border-0"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="flex items-center gap-2">
-                        <div className="loading-dot w-2 h-2 bg-white rounded-full"></div>
-                        <div className="loading-dot w-2 h-2 bg-white rounded-full"></div>
-                        <div className="loading-dot w-2 h-2 bg-white rounded-full"></div>
-                      </div>
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
                       Envoi en cours...
                     </>
                   ) : (
                     <>
-                      <Send className="w-5 h-5 mr-2 animate-heartbeat" />
+                      <Send className="w-5 h-5 mr-2" />
                       Envoyer le message
                     </>
                   )}
@@ -357,59 +372,6 @@ export function Contact() {
         @keyframes shrink {
           from { width: 100%; }
           to { width: 0%; }
-        }
-        .loading-dot {
-          animation: dot-bounce 1s infinite ease-in-out;
-        }
-        @keyframes dot-bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-4px); }
-        }
-        .hover-brighten:hover {
-          color: white;
-        }
-        .animate-text-reveal {
-          animation: text-reveal 0.5s forwards;
-        }
-        @keyframes text-reveal {
-          from { opacity: 0; transform: translateX(-10px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        .animate-slide-in-right {
-          animation: slide-in-right 0.5s forwards;
-        }
-        @keyframes slide-in-right {
-          from { opacity: 0; transform: translateX(10px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        .animate-glow-pulse {
-          animation: glow-pulse 1s infinite ease-in-out;
-        }
-        @keyframes glow-pulse {
-          0%, 100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
-          50% { box-shadow: 0 0 15px rgba(255, 255, 255, 1); }
-        }
-        .animate-heartbeat {
-          animation: heartbeat 1s infinite;
-        }
-        @keyframes heartbeat {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.1); }
-          100% { transform: scale(1); }
-        }
-        .animate-morph-border {
-          animation: morph-border 0.5s forwards;
-        }
-        @keyframes morph-border {
-          from { border-radius: 10px; }
-          to { border-radius: 50%; }
-        }
-        .animate-slide-in-left {
-          animation: slide-in-left 0.5s forwards;
-        }
-        @keyframes slide-in-left {
-          from { opacity: 0; transform: translateX(-10px); }
-          to { opacity: 1; transform: translateX(0); }
         }
       `}</style>
     </section>

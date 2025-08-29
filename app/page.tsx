@@ -10,7 +10,6 @@ import { Navbar } from "@/components/navbar"
 import { AnimatedBackground } from "@/components/animated-background"
 import { FloatingElements } from "@/components/floating-elements"
 import { ScrollProgress } from "@/components/scroll-progress"
-import { AnimationShowcase } from "@/components/animation-showcase"
 
 export default function Home() {
   return (
@@ -26,7 +25,6 @@ export default function Home() {
       <GitHubStats />
       <Skills />
       <Education />
-      <AnimationShowcase />
       <Contact />
     </main>
   )
