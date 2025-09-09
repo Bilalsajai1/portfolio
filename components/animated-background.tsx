@@ -1,11 +1,13 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { useReducedMotion } from "framer-motion"
 import { useTheme } from "next-themes"
 
 export function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { theme, resolvedTheme } = useTheme()
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -65,8 +67,11 @@ export function AnimatedBackground() {
 
     const init = () => {
       particles.length = 0
-      // Reduced number of particles for better performance
-      for (let i = 0; i < 30; i++) {
+      // Particle count adapts to motion preference and screen size
+      const base = prefersReducedMotion ? 8 : 30
+      const factor = Math.min(1.5, Math.max(1, window.innerWidth / 1200))
+      const count = Math.round(base * factor)
+      for (let i = 0; i < count; i++) {
         particles.push(new Particle())
       }
     }
@@ -120,7 +125,7 @@ export function AnimatedBackground() {
       cancelAnimationFrame(animationFrameId)
       window.removeEventListener("resize", resizeCanvas)
     }
-  }, [theme, resolvedTheme])
+  }, [theme, resolvedTheme, prefersReducedMotion])
 
   return (
     <canvas

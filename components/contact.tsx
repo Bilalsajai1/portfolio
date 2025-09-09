@@ -18,6 +18,7 @@ export function Contact() {
     email: "",
     subject: "",
     message: "",
+    website: "", // honeypot
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccessBar, setShowSuccessBar] = useState(false)
@@ -53,23 +54,17 @@ export function Contact() {
     },
   ]
 
-  const sendEmail = async (templateParams: any) => {
-    try {
-      // Import EmailJS dynamically
-      const emailjs = await import("@emailjs/browser")
-
-      // Replace these with your actual EmailJS credentials
-      const serviceId = "service_l5d8qho"
-      const templateId = "template_wn789ra"
-      const publicKey = "3VYRACiX8tyWYHJ--"
-
-      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey)
-
-      return result
-    } catch (error) {
-      console.error("EmailJS Error:", error)
-      throw error
+  const sendEmail = async (payload: any) => {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      throw new Error(data?.error || "Failed to send email")
     }
+    return res.json()
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -78,17 +73,15 @@ export function Contact() {
 
     try {
       // Prepare email template parameters
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
+      const payload = {
+        name: formData.name,
+        email: formData.email,
         subject: formData.subject,
         message: formData.message,
-        sent_date: new Date().toLocaleString("fr-FR"),
-        to_email: "contact.sajbilal@gmail.com", // Your email
+        website: formData.website, // honeypot
       }
 
-      // Send email via EmailJS
-      await sendEmail(templateParams)
+      await sendEmail(payload)
 
       // Reset form
       setFormData({
@@ -96,6 +89,7 @@ export function Contact() {
         email: "",
         subject: "",
         message: "",
+        website: "",
       })
 
       // Show success feedback
@@ -258,6 +252,16 @@ export function Contact() {
 
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot field (hidden for humans) */}
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleInputChange as any}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden"
+                />
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">

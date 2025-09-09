@@ -7,9 +7,11 @@ import Link from "next/link"
 import Image from "next/image"
 import { TypingAnimation } from "./typing-animation"
 import { useEffect, useState } from "react"
+import { motion, useReducedMotion } from "framer-motion"
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false)
+  const prefersReducedMotion = useReducedMotion()
 
   const typingTexts = [
     "Intelligence Artificielle",
@@ -39,40 +41,26 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-blue-900/20 dark:to-indigo-900/30"
+      className="relative min-h-screen flex items-center justify-center px-4 py-24 overflow-hidden"
     >
       {/* Enhanced background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-blue-400/20 via-indigo-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse" />
-        <div
-          className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-gradient-to-r from-purple-400/20 via-pink-400/20 to-rose-400/20 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-cyan-400/10 via-blue-400/10 to-indigo-400/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "2s" }}
-        />
-
-        {/* Floating geometric shapes */}
-        <div
-          className="absolute top-1/4 right-1/4 w-4 h-4 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full animate-bounce opacity-60"
-          style={{ animationDelay: "0.5s" }}
-        />
-        <div
-          className="absolute bottom-1/3 left-1/4 w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-bounce opacity-60"
-          style={{ animationDelay: "1.5s" }}
-        />
-        <div
-          className="absolute top-1/3 left-1/6 w-2 h-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full animate-bounce opacity-60"
-          style={{ animationDelay: "2.5s" }}
-        />
-      </div>
+      <div className="absolute inset-0 overflow-hidden" />
 
       <div className="container mx-auto max-w-6xl relative z-20">
-        <div className="text-center space-y-8">
+        <motion.div
+          className="text-center space-y-8"
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           {/* Enhanced Professional Photo */}
-          <div
+          <motion.div
             className={`relative mx-auto w-44 h-44 mb-8 transition-all duration-1000 ${isVisible ? "animate-scale-in" : ""}`}
+            initial={{ scale: prefersReducedMotion ? 1 : 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-indigo-500 via-purple-500 to-pink-500 p-1 shadow-2xl">
               <div className="w-full h-full rounded-full bg-white dark:bg-gray-900 p-1">
@@ -99,43 +87,56 @@ export function Hero() {
             <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-r from-violet-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg">
               <Zap className="w-4 h-4 text-white" />
             </div>
-          </div>
+          </motion.div>
 
           {/* Enhanced name with creative gradients */}
-          <div className={`space-y-6 transition-all duration-1000 delay-300 ${isVisible ? "animate-fade-in-up" : ""}`}>
-            <h1 className="text-6xl md:text-8xl font-bold perspective-1000">
-              <span className="inline-block bg-gradient-to-r from-blue-600 via-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-500">
+          <motion.div
+            className={`space-y-6 transition-all duration-1000 delay-300 ${isVisible ? "animate-fade-in-up" : ""}`}
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          >
+            <h1 className="text-6xl md:text-8xl font-bold perspective-1000 text-neon">
+              <span className="inline-block bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-purple-500 bg-clip-text text-transparent hover:from-cyan-300 hover:via-fuchsia-300 hover:to-purple-400 transition-all duration-500">
                 Bilal SAJAI
               </span>
             </h1>
             <h2 className="text-2xl md:text-4xl text-gray-700 dark:text-gray-300 font-medium">
-              Ingénieur en <TypingAnimation texts={typingTexts} className="text-gradient-animated font-bold" />
+              Ingénieur en <TypingAnimation texts={typingTexts} className="font-bold bg-gradient-to-r from-cyan-400 via-indigo-400 to-fuchsia-400 bg-clip-text text-transparent" />
             </h2>
-          </div>
+          </motion.div>
 
           {/* Enhanced animated badges with new colors */}
-          <div
+          <motion.div
             className={`flex flex-wrap justify-center gap-4 transition-all duration-1000 delay-500 ${isVisible ? "animate-fade-in-up" : ""}`}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
           >
             {[
               { icon: Brain, text: "Machine Learning", delay: "0s", color: "from-violet-500 to-purple-500" },
               { icon: Code, text: "Full-Stack Development", delay: "0.2s", color: "from-blue-500 to-indigo-500" },
               { icon: Database, text: "Distributed Systems", delay: "0.4s", color: "from-emerald-500 to-teal-500" },
             ].map((badge, index) => (
-              <Badge
+              <motion.div
                 key={index}
-                variant="secondary"
-                className={`px-6 py-3 text-sm hover-lift glass-effect hover:glass-effect-dark cursor-pointer group relative overflow-hidden transition-all duration-300 border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-lg`}
-                style={{ animationDelay: badge.delay }}
+                variants={{ hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 8 }, show: { opacity: 1, y: 0 } }}
               >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-r ${badge.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
-                />
-                <badge.icon className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:scale-110" />
-                <span className="relative z-10 font-medium">{badge.text}</span>
-              </Badge>
+                <Badge
+                  variant="secondary"
+                  className={`px-6 py-3 text-sm hover-lift glass-effect hover:glass-effect-dark cursor-pointer group relative overflow-hidden transition-all duration-300 border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-lg`}
+                >
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r ${badge.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+                  />
+                  <badge.icon className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:scale-110" />
+                  <span className="relative z-10 font-medium">{badge.text}</span>
+                </Badge>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Enhanced description with better typography */}
           <p
@@ -158,8 +159,12 @@ export function Hero() {
           </p>
 
           {/* Enhanced CTA buttons with new gradients */}
-          <div
+          <motion.div
             className={`flex flex-col sm:flex-row gap-6 justify-center items-center transition-all duration-1000 delay-900 ${isVisible ? "animate-fade-in-up" : ""}`}
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           >
             <Button
               size="lg"
@@ -184,11 +189,15 @@ export function Hero() {
                 Voir mes projets
               </span>
             </Button>
-          </div>
+          </motion.div>
 
           {/* Enhanced social links with new colors */}
-          <div
+          <motion.div
             className={`flex justify-center gap-8 pt-8 transition-all duration-1000 delay-1100 ${isVisible ? "animate-fade-in-up" : ""}`}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
           >
             {[
               {
@@ -213,20 +222,24 @@ export function Hero() {
                 gradient: "from-gray-600 to-gray-800",
               },
             ].map((social, index) => (
-              <Link
+              <motion.div
                 key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`text-gray-600 ${social.color} ${social.bg} p-4 rounded-full transition-all duration-300 transform hover:scale-125 hover:-translate-y-2 magnetic group relative overflow-hidden shadow-lg hover:shadow-xl`}
+                variants={{ hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 8 }, show: { opacity: 1, y: 0 } }}
               >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-r ${social.gradient} opacity-0 group-hover:opacity-20 rounded-full transition-opacity duration-300`}
-                />
-                <social.icon className="w-7 h-7 relative z-10 group-hover:animate-pulse" />
-              </Link>
+                <Link
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-gray-600 ${social.color} ${social.bg} p-4 rounded-full transition-all duration-300 transform hover:scale-125 hover:-translate-y-2 magnetic group relative overflow-hidden shadow-lg hover:shadow-xl`}
+                >
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r ${social.gradient} opacity-0 group-hover:opacity-20 rounded-full transition-opacity duration-300`}
+                  />
+                  <social.icon className="w-7 h-7 relative z-10 group-hover:animate-pulse" />
+                </Link>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Enhanced scroll indicator */}
           <div
@@ -241,7 +254,7 @@ export function Hero() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

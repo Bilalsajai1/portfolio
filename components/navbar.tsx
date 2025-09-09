@@ -11,6 +11,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   const navItems = [
     { id: "home", label: "Accueil", href: "#home" },
@@ -40,6 +41,12 @@ export function Navbar() {
       if (currentSection) {
         setActiveSection(currentSection)
       }
+
+      // Scroll progress
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0
+      setScrollProgress(progress)
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -63,6 +70,13 @@ export function Navbar() {
             : "bg-transparent"
         }`}
       >
+        {/* Scroll progress bar */}
+        <div className="absolute top-0 left-0 h-0.5 w-full bg-transparent">
+          <div
+            className="h-0.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transition-[width] duration-150"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -85,11 +99,11 @@ export function Navbar() {
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
                     activeSection === item.id
                       ? "text-white"
-                      : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+                      : "text-gray-600 dark:text-gray-300 hover:text-blue-300 dark:hover:text-blue-300"
                   }`}
                 >
                   {activeSection === item.id && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse" />
+                    <div className="absolute inset-0 rounded-full card-gradient-border" />
                   )}
                   <span className="relative z-10">{item.label}</span>
                 </button>

@@ -8,13 +8,14 @@ import { Education } from "@/components/education"
 import { Contact } from "@/components/contact"
 import { Navbar } from "@/components/navbar"
 import { AnimatedBackground } from "@/components/animated-background"
+import { AuroraBackground } from "@/components/aurora-background"
 import { FloatingElements } from "@/components/floating-elements"
 import { ScrollProgress } from "@/components/scroll-progress"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 dark:from-gray-900 dark:to-slate-800 relative overflow-hidden">
-      <AnimatedBackground />
+    <main className="min-h-screen relative overflow-hidden">
+      <AuroraBackground />
       <FloatingElements />
       <ScrollProgress />
       <Navbar />
